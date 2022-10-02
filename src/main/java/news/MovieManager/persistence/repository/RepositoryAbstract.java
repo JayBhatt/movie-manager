@@ -9,9 +9,9 @@ import java.util.List;
 import java.util.Optional;
 
 @NoRepositoryBean
-public interface IRepositoryAbstract<E extends EntityAbstract, T extends Serializable> extends CrudRepository<E, T> {
+public interface RepositoryAbstract<E extends EntityAbstract, T extends Serializable> extends CrudRepository<E, T> {
 
-    Optional<E> findByIdAndActive(Long id, Boolean active);
+    E findByIdAndActive(Long id, Boolean active);
 
     List<E> findAllByActive(Boolean active);
 

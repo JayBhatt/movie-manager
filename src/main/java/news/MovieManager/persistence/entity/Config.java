@@ -15,10 +15,10 @@ import javax.persistence.Entity;
 @AllArgsConstructor
 public class Config extends EntityAbstract {
 
-    @Column(unique = true, nullable = false, length = 200)
+    @Column(name = "config_key", unique = true, nullable = false, length = 200)
     private String key;
 
-    @Column
+    @Column(name = "config_value")
     @Type(type = "text")
     private String value;
 

@@ -1,5 +1,6 @@
 package news.MovieManager.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,12 +15,13 @@ import javax.persistence.ManyToOne;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class User extends EntityAbstract {
+public class MovieUser extends EntityAbstract {
 
     @Column(unique = true, nullable = false, length = 150)
     private String email;
 
-    @Column(nullable = false, length = 200)
+    @Column(nullable = false)
+    @JsonIgnore
     private String password;
 
     @ManyToOne

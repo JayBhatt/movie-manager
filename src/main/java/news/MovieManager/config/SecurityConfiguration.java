@@ -92,7 +92,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .mvcMatchers("/api/auth/login").permitAll()
                 .mvcMatchers(HttpMethod.POST, "/api/user").permitAll()
                 .mvcMatchers(HttpMethod.PUT, "/api/config").hasRole(Role.ADMIN.getRole())
-                .anyRequest().authenticated());
+                .anyRequest().permitAll());
         // Filters
         http.addFilterBefore(
                 jwtTokenFilter,

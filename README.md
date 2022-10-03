@@ -1,29 +1,56 @@
-# Getting Started
+# Movie Manager
 
-### Reference Documentation
-For further reference, please consider the following sections:
 
-* [Official Gradle documentation](https://docs.gradle.org)
-* [Spring Boot Gradle Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.7.4/gradle-plugin/reference/html/)
-* [Create an OCI image](https://docs.spring.io/spring-boot/docs/2.7.4/gradle-plugin/reference/html/#build-image)
-* [Spring Web](https://docs.spring.io/spring-boot/docs/2.7.4/reference/htmlsingle/#web)
-* [Spring Security](https://docs.spring.io/spring-boot/docs/2.7.4/reference/htmlsingle/#web.security)
-* [Spring Data JPA](https://docs.spring.io/spring-boot/docs/2.7.4/reference/htmlsingle/#data.sql.jpa-and-spring-data)
-* [Spring Boot DevTools](https://docs.spring.io/spring-boot/docs/2.7.4/reference/htmlsingle/#using.devtools)
+A simple system to fetch popular movies from themoviedb.org.
 
-### Guides
-The following guides illustrate how to use some features concretely:
+## Installation
 
-* [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
-* [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
-* [Building REST services with Spring](https://spring.io/guides/tutorials/rest/)
-* [Securing a Web Application](https://spring.io/guides/gs/securing-web/)
-* [Spring Boot and OAuth2](https://spring.io/guides/tutorials/spring-boot-oauth2/)
-* [Authenticating a User with LDAP](https://spring.io/guides/gs/authenticating-ldap/)
-* [Accessing Data with JPA](https://spring.io/guides/gs/accessing-data-jpa/)
+To install the movie manager in your machine, simply clone the repo, build the project and run the docker-compose as shown in the example below.
 
-### Additional Links
-These additional references should also help you:
+`cd project-root && ./gradlew bootJar && docker-compsoe up -d`
 
-* [Gradle Build Scans – insights for your project's build](https://scans.gradle.com#gradle)
+Once installed the system can be accessed using the url `http://localhost/index.html`
+
+## Design Specifications 
+
+### Polling infinite scroller
+
+This is the main feature of this system. The TMDB api returns 20 results in a single API call, and we have to make subsequent API calls to fetch genre. To limit the
+number of requests, the polling infinite scroller does something clever:
+
+* It calls the TMDB movie api and fetches 20 results. 
+* Then it makes subsequent calls and fetches genre for the first 5 results and shows them on screen.
+* When user clicks on the load more button, it grabs next 5 results and makes subsequent calls to fetch genre and displays them on UI. 
+* Once all 20 results are shown on the screen, it makes another call to grab 20 more results and repeats the process.
+
+The number of records to show on page (5 currently) is configurable.
+
+#### Note: IMDB movie api throttles requests, to handle this the system will retry 3 times, with specific delay between each request. Both the number of retries and delay are configurable.
+
+### Security
+
+This API utilises spring security package and has the following features. 
+
+* JWT token bases authentication.
+* 30 minute token expiry.
+* Encrypted passwords.
+* Supports two user roles, admin and user. Admins can login and see the sensitive configurations. 
+
+### Config
+
+* Configuration is stored as key/value pair to provide flexibility in storing different values. 
+* Note: Right now the value can only be stored in string format, but we can create different columns (like integer, float, boolean...etc) in database and then store the value in 
+  corresponding column to provide type safety. 
+
+## Future enhancements 
+
+* Write test cases.
+* Allow users to register as admins.
+* Allow users to edit configuration. 
+* Handle more error codes / responses returned from the TMDB API, so we can show meaningful errors to users. 
+* Provide search / filter capabilities.
+* Right now when users click on the image, it opens a bigger version of the image in a popup, add some highlighting effects on image on hover so users know, its clickable.
+
+
+
 

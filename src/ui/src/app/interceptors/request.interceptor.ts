@@ -5,7 +5,7 @@ import { AuthService } from '../services/auth.service';
 import { User } from '../models/user';
 
 @Injectable()
-export class Request implements HttpInterceptor {
+export class RequestInterceptor implements HttpInterceptor {
 
     private readonly authService: AuthService;
 
@@ -17,7 +17,7 @@ export class Request implements HttpInterceptor {
         const user: User = this.authService.getUser();
         if (user && user.authorization) {
             request = request.clone({
-                setHeaders: { 
+                setHeaders: {
                     Authorization: `Bearer ${user.authorization}`
                 }
             });

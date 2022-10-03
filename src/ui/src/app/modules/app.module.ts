@@ -9,9 +9,10 @@ import { MovieListComponent } from 'src/app/components/movie-list/movie-list.com
 import { LoginComponent } from 'src/app/components/login/login.component';
 import { FormsModule }   from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgxSpinnerModule } from "ngx-spinner";
+import {RequestInterceptor} from "../interceptors/request.interceptor";
 
 @NgModule({
   declarations: [
@@ -31,7 +32,9 @@ import { NgxSpinnerModule } from "ngx-spinner";
     BrowserAnimationsModule,
     NgxSpinnerModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

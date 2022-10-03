@@ -42,6 +42,19 @@ This API utilises spring security package and has the following features.
 * Note: Right now the value can only be stored in string format, but we can create different columns (like integer, float, boolean...etc) in database and then store the value in 
   corresponding column to provide type safety. 
 
+## Tech stack
+
+* Spring boot 2.7.4
+* H2 Db (File based)
+* Docker-ce v20
+* Gradle 7.5
+* Java 11
+* Angular 14
+* Bootstrap 5
+* SCSS
+* Node >= 16
+* Angular cli 14.2.4
+
 ## Future enhancements 
 
 * Write test cases.

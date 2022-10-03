@@ -105,7 +105,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.setAllowedOrigins(List.of("http://localhost:4200", "https://movie-manager.starcentralmagazine.com"));
+        config.setAllowedOrigins(List.of("http://localhost:4200", "https://movie-manager.starcentralmagazine.com", "https://movie-manager.starcentralmagazine.com/", "movie-manager.starcentralmagazine.com", "http://movie-manager.starcentralmagazine.com/", "http://movie-manager.starcentralmagazine.com"));
         config.setAllowedMethods(Collections.singletonList("*"));
         config.setAllowedHeaders(Collections.singletonList("*"));
         config.setExposedHeaders(Arrays.asList("x-auth-token", "Authorization"));

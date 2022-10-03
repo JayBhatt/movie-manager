@@ -1,0 +1,106 @@
+.attribution {
+    margin: 0 auto;
+    text-align: center;
+    p {
+        color: gray !important;
+        font-size: 14px;
+    }
+}
+
+.navigation-container {
+    margin-right: 0;
+    .container-fluid {
+        padding-right: 0;
+        margin-right: 0;
+    }
+    .header-image {
+        padding-left: 50px;
+        max-height: 50px;
+    }
+    .navbar {
+        width: 100%;
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-top: 0;
+        border: 1px solid #efefef;
+        background: #ffffff !important;
+        overflow: hidden;
+        -webkit-box-shadow: 0 10px 34px -15px rgb(0 0 0 / 24%);
+        -moz-box-shadow: 0 10px 34px -15px rgba(0,0,0,.24);
+        box-shadow: 0 10px 34px -15px rgb(0 0 0 / 24%);
+        .navbar-collapse {
+            ul {
+                margin-left: auto;
+            }
+        }
+        .navbar-toggler {
+            font-size: 12px;
+            border-radius: 0;
+            margin-right: 25px;
+        }
+
+        .navbar-toggler:focus, .navbar-toggler:active {
+            outline: none !important;
+            box-shadow: none;
+            border: 1px solid #01d28e;
+        }
+        ul {
+            li {
+                a.active, a:hover, a:focus {
+                    background: #efefef;
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+    .navbar-nav {
+        padding-right: 50px;;
+    }
+    a.active {
+        text-decoration: underline;
+    }
+}
+
+.title-container {
+    h1 {
+        color: #01d28e;
+        padding-bottom: 30px;
+        margin-bottom: 30px;
+        border-bottom: 1px solid #01d28e;
+        i {
+            padding-right: 10px;
+        }
+    }
+}
+
+.welcome-message {
+    padding-top: 15px;
+    color: #000;
+    b {
+        color: #01d28e;
+    }
+}
+
+.container-image {
+    max-height: 170px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 769px) {
+    .container-image {
+        max-height: 100px;
+        margin: 10px;
+    }
+    #navbar-mobile {
+        ul {
+            li:first-child {
+                border-top: 1px solid #efefef;
+            }
+            li {
+                padding-left: 25px;
+                border-bottom: 1px solid #efefef;
+            }
+        }
+    }
+}

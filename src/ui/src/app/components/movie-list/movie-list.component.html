@@ -1,0 +1,55 @@
+<div class="container movie-list-container">
+    <div class="row">
+        <div class="col-sm-12 mb-3" *ngIf="error">
+            <div class="alert alert-danger" role="alert">
+                Error: {{ error || "An error occurred while fetching movies, please try again after sometime." }}
+            </div>
+        </div>
+        <table class="table table-striped table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Poster</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Genre</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngIf="!movieList || movieList.length < 0">
+                    <th scope="row" colspan="5">
+                        <div class="alert movie-alert-container" role="alert">
+                            No more movies found to load.
+                        </div>
+                    </th>
+                </tr>
+                <tr *ngFor="let movie of movieList;">
+                    <td>{{movie.id}}</td>
+                    <td class="text-center">
+                        <a href="javascript:void(0);" (click)="showModalDialog(movie.poster_path)" class="poster-container" title="click to preview">
+                            <img src="{{posterBaseUrl}}/{{movie.poster_path}}" height="80" alt="click to preview" />
+                        </a>
+                    </td>
+                    <td>{{movie.title}}</td>
+                    <td innerHTML={{movie.genre}}></td>
+                </tr>
+                <tr *ngIf="movieList && movieList.length > 0 && page < totalPage">
+                    <th scope="row" colspan="5" class="load-more-btn-container text-center">
+                        <button type="button" class="form-control btn btn-primary rounded submit px-3 load-more-btn" (click)="loadMoreMovies()"><i class="bi bi-caret-down-square"></i> &nbsp; Load More</button>
+                    </th>
+                </tr>    
+            </tbody>
+        </table>
+    </div>
+</div>
+  <div class="modal fade" [ngClass]="{'show': showModal}" id="image-model" aria-hidden="true" [ngStyle]="showModal ? {'display': 'block'} : {'display': 'none'}" >
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <img src="{{posterImage}}" height="500px" />
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" (click)="hideModalDialog()">Close</button>
+          </div>
+      </div>
+    </div>
+  </div>

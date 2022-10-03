@@ -1,0 +1,50 @@
+<div class="login-wrap p-4 p-md-5">
+    <div class="d-flex">
+        <div class="w-100">
+            <h3>Sign In</h3>
+        </div>
+    </div>
+    <form *ngIf="!hasLoggedIn" name="form" (ngSubmit)="form.form.valid && onSubmit(form)" #form="ngForm" novalidate
+        class="signin-form">
+        <div class="form-group mb-3">
+            <div *ngIf="loginError" class="alert alert-danger" role="alert">
+                Error: {{ error || "An error occurred while login, please try again after sometime." }}
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label class="label" for="username">Email</label>
+            <input name="username" id="username" type="email" class="form-control" [(ngModel)]="loginForm.username"
+                required email #username="ngModel" [ngClass]="{ 'is-invalid': form.submitted && username.errors }"
+                placeholder="Email">
+            <div *ngIf="username.errors && form.submitted" class="invalid-feedback">
+                <div *ngIf="username.errors['required']">
+                    Please enter your email.
+                </div>
+                <div *ngIf="username.errors['email']">
+                    Please enter a valid email.
+                </div>
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label class="label" for="password">Password</label>
+            <input name="password" id="password" type="password" class="form-control" placeholder="Password" required
+                [(ngModel)]="loginForm.password" required minlength="6" maxlength="10" #password="ngModel"
+                [ngClass]="{ 'is-invalid': form.submitted && password.errors }">
+            <div *ngIf="password.errors && form.submitted" class="invalid-feedback">
+                <div *ngIf="password.errors['required']">
+                    Please enter your password.
+                </div>
+                <div *ngIf="password.errors['minlength']">
+                    Password must be at least 6 characters long.
+                </div>
+                <div *ngIf="password.errors['minlength']">
+                    Password can't be more than 10 characters long.
+                </div>
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <button ng-disabled="form.$invalid" type="submit" class="form-control btn btn-primary submit px-3 signin-btn"><i class="bi bi-cast"></i> &nbsp; Sign In</button>
+        </div>
+        <p class="registration-link">Not a member? <a data-toggle="tab" href="/register">Sign Up</a></p>
+    </form>
+</div>

@@ -90,8 +90,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeHttpRequests(authorize -> authorize
                 .mvcMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .mvcMatchers("/api/auth/login").permitAll()
-                .mvcMatchers(HttpMethod.POST, "/api/user/").permitAll()
-                .mvcMatchers(HttpMethod.PUT, "/api/config").hasRole(Role.ADMIN.getRole()));
+                .mvcMatchers(HttpMethod.POST, "/api/user").permitAll()
+                .mvcMatchers(HttpMethod.PUT, "/api/config").hasRole(Role.ADMIN.getRole())
+                .anyRequest().authenticated());
         // Filters
         http.addFilterBefore(
                 jwtTokenFilter,
@@ -104,7 +105,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.setAllowedOrigins(List.of("http://localhost:4200"));
+        config.setAllowedOrigins(List.of("http://localhost:4200", "https://movie-manager.starcentralmagazine.com"));
         config.setAllowedMethods(Collections.singletonList("*"));
         config.setAllowedHeaders(Collections.singletonList("*"));
         config.setExposedHeaders(Arrays.asList("x-auth-token", "Authorization"));

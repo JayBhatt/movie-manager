@@ -34,3 +34,18 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### UI App ###
+src/ui/node_modules
+src/ui/dist
+src/ui/.angular/
+src/ui/.vscode/
+src/ui/.sass-cache/
+src/ui/connect.lock
+src/ui/coverage/*
+src/ui/libpeerconnection.log
+src/ui/testem.log
+src/ui/typings
+src/ui/tmp
+src/ui/out-tsc
+src/ui/bazel-out

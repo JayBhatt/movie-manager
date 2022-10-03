@@ -1,0 +1,23 @@
+<div class="container config-list-container">
+    <div class="row">
+        <div class="col-sm-12 mb-3" *ngIf="error">
+            <div class="alert alert-danger" role="alert">
+                Error: {{ error || "An error occurred while fetching movies, please try again after sometime." }}
+            </div>
+        </div>
+        <table class="table table-striped table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Config Key</th>
+                    <th scope="col">Config Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let config of configList;">
+                    <td>{{config.key}}</td>
+                    <td>{{config.value}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+.movie-list-container {
+    padding: 30px 50px 30px 50px;
+    .container {
+        padding: 10px 50px 15px 50px;
+    }
+    table {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        tr {
+            th:first-child {
+                text-align: left;
+            }
+            th {
+                vertical-align: middle;
+                text-align: center;
+            }
+            td {
+                vertical-align: middle;
+            }
+        }
+    }
+    .movie-alert-container {
+        text-align: center;
+        padding-top: 40px;
+    }
+    .load-more-btn-container {
+        padding: 20px;
+        .load-more-btn {
+            max-width: 200px;
+            margin: 0 auto;
+        }
+    }
+}
+
+#image-model {
+    background: rgba(8,8,8,0.4);
+}
+
+.modal-content {
+    width: auto;
+}

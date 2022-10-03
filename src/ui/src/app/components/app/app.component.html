@@ -1,0 +1,58 @@
+<section class="app-container">
+  <div class="row justify-content-center navigation-container" *ngIf="hasLoggedIn">
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="javascript:void(0)">
+            <img class="img-responsive header-image" src="/assets/images/logo.png">
+          </a>
+          <p class="welcome-message">Welcome <b>{{welcomeMessage}}</b>!!!</p>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-mobile"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbar-mobile">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/movie-list" routerLinkActive="active" *ngIf="hasLoggedIn">Movies</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/config" routerLinkActive="active" *ngIf="isAdmin">Config</a>
+              </li>
+              <li class="nav-item"><a class="nav-link" routerLink="/logout" routerLinkActive="active"
+                  *ngIf="hasLoggedIn" (click)="logout()">Logout</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </nav>
+  </div>
+  <div class="container" [ngClass]="{'container-top-spacing': hideBranding}">
+    <div class="row justify-content-center">
+      <div *ngIf="!hideBranding" class="col-md-12 col-lg-8 mt-1 attribution logo-container">
+        <a href="javascript:void(0);">
+          <img class="img-responsive container-image" src="/assets/images/logo.png">
+        </a>
+      </div>
+      <div class="col-sm-12 col-lg-9 text-center title-container">
+        <h1 *ngIf="route == '/movie-list'"><i class="bi bi-card-list"></i> Movie List 
+        </h1>
+        <h1 *ngIf="route == '/config'"><i class="bi bi-tools"></i>Config</h1>
+      </div>
+      <div class="col-sm-12 col-lg-9">
+        <div class="wrap login-wrap-container mt-3">
+          <router-outlet></router-outlet>
+        </div>
+        <div class="col-md-12 col-lg-8 mt-5 mb-5 attribution">
+          <p>Powered By</p>
+          <a href="https://www.themoviedb.org">
+            <img
+              src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_long_1-8ba2ac31f354005783fab473602c34c3f4fd207150182061e425d366e4f34596.svg"
+              width="250px;" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<ngx-spinner type="ball-scale-multiple"></ngx-spinner>

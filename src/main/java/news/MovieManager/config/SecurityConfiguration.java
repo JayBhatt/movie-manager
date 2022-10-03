@@ -77,7 +77,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         // disable defaults
-        http = http.cors().and().csrf().disable().httpBasic().disable().formLogin().disable();
+        http = http.csrf().disable().cors().and().httpBasic().disable().formLogin().disable();
         // State
         http = http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and();
         // Exceptions
@@ -104,8 +104,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public FilterRegistrationBean<CorsFilter> simpleCorsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowCredentials(true);
-        config.setAllowedOrigins(List.of("http://localhost:4200", "https://movie-manager.starcentralmagazine.com", "https://movie-manager.starcentralmagazine.com/", "movie-manager.starcentralmagazine.com", "http://movie-manager.starcentralmagazine.com/", "http://movie-manager.starcentralmagazine.com"));
+        config.addAllowedOrigin("*");
         config.setAllowedMethods(Collections.singletonList("*"));
         config.setAllowedHeaders(Collections.singletonList("*"));
         config.setExposedHeaders(Arrays.asList("x-auth-token", "Authorization"));

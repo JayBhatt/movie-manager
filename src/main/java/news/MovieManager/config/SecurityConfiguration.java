@@ -77,7 +77,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         // disable defaults
-        http = http.csrf().disable().cors().and().httpBasic().disable().formLogin().disable();
+        http = http.cors().and().csrf().disable().httpBasic().disable().formLogin().disable();
         // State
         http = http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and();
         // Exceptions
@@ -88,10 +88,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .exceptionHandling().accessDeniedHandler(this.accessDeniedEntryPoint).and();
         // Endpoints
         http.authorizeHttpRequests(authorize -> authorize
-                .mvcMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .mvcMatchers("/api/auth/login").permitAll()
                 .mvcMatchers(HttpMethod.POST, "/api/user").permitAll()
-                .mvcMatchers(HttpMethod.PUT, "/api/config").hasRole(Role.ADMIN.getRole()));
+                .mvcMatchers(HttpMethod.PUT, "/api/config").hasRole(Role.ADMIN.getRole())
+                .anyRequest().authenticated());
         // Filters
         http.addFilterBefore(
                 jwtTokenFilter,

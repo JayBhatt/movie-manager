@@ -6,7 +6,7 @@
           <a class="navbar-brand" href="javascript:void(0)">
             <img class="img-responsive header-image" src="/assets/images/logo.png">
           </a>
-          <p class="welcome-message">Welcome <b>{{welcomeMessage}}</b>!!!</p>
+          <p class="welcome-message" [innerHTML]="welcomeMessage"></p>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-mobile"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -35,7 +35,7 @@
         </a>
       </div>
       <div class="col-sm-12 col-lg-9 text-center title-container">
-        <h1 *ngIf="route == '/movie-list'"><i class="bi bi-card-list"></i> Movie List 
+        <h1 *ngIf="route == '/movie-list'"><i class="bi bi-card-list"></i> Movie List
         </h1>
         <h1 *ngIf="route == '/config'"><i class="bi bi-tools"></i>Config</h1>
       </div>
